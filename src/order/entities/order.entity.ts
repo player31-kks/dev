@@ -22,6 +22,10 @@ export class Order {
     @Column({ type: Number, default: -1 })
     estimatedTime: number;
 
-    @Column({ type: Boolean })
+    @Column({ type: Boolean, default: false })
     deliverFinish: boolean;
+
+    changeEstimatedTime(time: number) {
+        this.estimatedTime = time;
+    }
 }
