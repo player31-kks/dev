@@ -25,7 +25,11 @@ export class Order {
     @Column({ type: Boolean, default: false })
     deliverFinish: boolean;
 
-    changeEstimatedTime(time: number) {
+    changeEstimatedTime(time: number): void {
         this.estimatedTime = time;
+    }
+
+    changeDeliverFinish(finish: boolean): void {
+        this.deliverFinish = finish;
     }
 }

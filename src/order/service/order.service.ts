@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from '../dto/CreateOrder.dto';
-import { UpdateOrderDto } from '../dto/update-order.dto';
 import { Order } from '../entities/order.entity';
 import { OrderFoodList } from '../entities/orderFoolList.entity';
 import { OrderRepository } from '../repository/order.repository';
@@ -30,17 +29,5 @@ export class OrderService {
 
     async findAll(): Promise<Order[]> {
         return this.repository.find({});
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} order`;
-    }
-
-    update(id: number, updateOrderDto: UpdateOrderDto) {
-        return `This action updates a #${id} order`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} order`;
     }
 }

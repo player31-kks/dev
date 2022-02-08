@@ -13,7 +13,7 @@ export class BossService {
         return this.orderRepository.save(order);
     }
 
-    findAll() {
+    findAll(): Promise<Order[]> {
         return this.orderRepository.find({});
     }
 
