@@ -1,23 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { Order } from 'src/order/entities/order.entity';
 import { OrderRepository } from 'src/order/repository/order.repository';
+import { OrderService } from 'src/order/service/order.service';
 import { BossInputDto } from './dto/BossInputDto';
 
 @Injectable()
 export class BossService {
-    constructor(private readonly orderRepository: OrderRepository) {}
+    constructor(private readonly orderService: OrderService) {}
 
     async updatedOrder(input: BossInputDto): Promise<Order> {
-        const order = await this.orderRepository.findOne(input.orderId);
-        order.changeEstimatedTime(input.estimatedTime);
-        return this.orderRepository.save(order);
+        return this.orderService.updateOrder(input.orderId, { category: 'start', estimatedTime: input.estimatedTime });
     }
 
-    findAll(): Promise<Order[]> {
-        return this.orderRepository.find({});
+    async findAll(): Promise<Order[]> {
+        return this.orderService.findAll();
     }
 
-    findByShop(shopId: number): Promise<Order[]> {
-        return this.orderRepository.findOrderByShopId(shopId);
+    async findByShop(shopId: number): Promise<Order[]> {
+        return this.orderService.findByShop(shopId);
     }
 }

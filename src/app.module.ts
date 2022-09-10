@@ -11,15 +11,15 @@ import { DatabaseModule } from './database/database.module';
 
 @Module({
     imports: [
+        TypeOrmModule.forRoot({
+            type: 'sqlite',
+            database: 'sqlite3',
+            entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
+            synchronize: true,
+        }),
         OrderModule,
-        // TypeOrmModule.forRoot({
-        //     type: 'sqlite',
-        //     database: 'sqlite3',
-        //     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        //     synchronize: true,
-        // }),
         ConfigModule.forRoot(),
-        DatabaseModule,
+        // DatabaseModule,
         BossModule,
         DeliveryModule,
     ],
